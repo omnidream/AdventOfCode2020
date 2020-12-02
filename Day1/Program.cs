@@ -7,8 +7,9 @@ namespace Day1
     {
         static void Main(string[] args)
         {
+            string puzzleSearchPath = (@"C:\Users\gusta\source\repos\AdventOfCode2020\Day1\puzzleInput.txt");
             List<int> myPuzzleInput = new List<int>();
-            myPuzzleInput = ConvertToNumberList(System.IO.File.ReadAllLines(@"C:\Users\gusta\source\repos\AdventOfCode2020\Day1\puzzleInput.txt"), myPuzzleInput);
+            myPuzzleInput = ConvertToNumberList(System.IO.File.ReadAllLines(puzzleSearchPath), myPuzzleInput);
             Console.WriteLine(FindTheMagicNumber(myPuzzleInput));
         }
 
