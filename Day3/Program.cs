@@ -14,7 +14,7 @@ namespace Day3
             string puzzleSearchPath = (@"C:\Users\gusta\source\repos\AdventOfCode2020\Day3\puzzleInput.txt");
             slope = System.IO.File.ReadAllLines(puzzleSearchPath);
             //GoDownhill(3, 1);
-            GoDownhillPartTwo();
+            PartTwo();
         }
 
         private static int GoDownhill(int right, int down)
@@ -37,7 +37,7 @@ namespace Day3
             trees = 0;
         }
 
-        private static void GoDownhillPartTwo()
+        private static void PartTwo()
         {
             long one = GoDownhill(1, 1);
             long two = GoDownhill(3, 1);
