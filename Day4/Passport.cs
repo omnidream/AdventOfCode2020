@@ -68,9 +68,8 @@ namespace Day4
                 return true;
             else
                 return false;
-
-
         }
+
         private bool ValidateHcl(string hcl)
         {
             bool returnValue = false;
@@ -144,8 +143,4 @@ namespace Day4
             return returnValue;
         }
     }
-
-
-
-
 }

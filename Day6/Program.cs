@@ -31,10 +31,8 @@ namespace Day6
                     answersData = String.Empty;
                     continue;
                 }
-
                 answersData = answersData + " " + data;
             }
-
             myAnswersList.Add(answersData);
             return myAnswersList;
         }
@@ -51,34 +49,24 @@ namespace Day6
             return sum;
         }
 
-        private static int PartTwo(List<string> answers)
+        private static int PartTwo(List<string> myAnswers)
         {
             int sum = 0;
-            foreach (string ans in answers)
+            foreach (string answer in myAnswers)
             {
                 List<char> answersList = new List<char>();
-                var temp = ans.Split(" ").Select(x => x.Distinct().ToList()).Where(x => x.Count > 0).ToList();
+                var temp = answer.Split(" ").Select(x => x.Distinct().ToList()).Where(x => x.Count > 0).ToList();
                 for (int i = 0; i < temp.Count; i++)
                 {
                     var a = temp[i];
                     if (i == 0)
-                    {
                         answersList.AddRange(a);
-                    }
                     else
-                    {
                         answersList = new List<char>(answersList.Intersect(a).ToList());
-                    }
                 }
-
                 sum += answersList.Count;
             }
-
             return sum;
         }
-
-
-
-        
     }
 }
