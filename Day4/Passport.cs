@@ -82,30 +82,12 @@ namespace Day4
 
         private bool ValidEcl(string ecl)
         {
+            string[] eyeColors = { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" };
             bool returnValue = false;
-            switch (ecl)
+            foreach (var color in eyeColors)
             {
-                case "amb":
+                if (color == ecl)
                     returnValue = true;
-                    break;
-                case "blu":
-                    returnValue = true;
-                    break;
-                case "brn":
-                    returnValue = true;
-                    break;
-                case "gry":
-                    returnValue = true;
-                    break;
-                case "grn":
-                    returnValue = true;
-                    break;
-                case "hzl":
-                    returnValue = true;
-                    break;
-                case "oth":
-                    returnValue = true;
-                    break;
             }
             return returnValue;
         }
