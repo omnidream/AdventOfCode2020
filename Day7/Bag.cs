@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Day7
 {
-    class Bag
+    public class Bag
     {
-        public int NumberOfBags { get; set; }
-        public string Color { get; set; }
+        public static string MyBagColor = "shiny gold";
+        private static readonly Regex colorMatchRegEx = new Regex(@"^[^\s]+\s+[^\s]+", RegexOptions.Compiled);
+        private static readonly Regex bagsMatchRegex = new Regex(@"(\d+) ([^\s]+\s+[^\s]+)", RegexOptions.Compiled);
+        public readonly string Name;
+        public readonly IDictionary<string, int> Content;
 
-        public Bag(int value, string color)
+        public Bag(string line)
         {
-            NumberOfBags = value;
-            Color = color;
+
         }
+
+        
     }
-
-    
-
 }
