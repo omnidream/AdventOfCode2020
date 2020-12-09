@@ -16,7 +16,7 @@ namespace day_7
             Console.WriteLine($"Part Two:  ");
         }
 
-        //Because of an outage during day 7, day 7 solution is not available...
+        //Because of an outage during day 7, day 7 solution is no longer available...
         //Sincerely
         //The Elvs
     }

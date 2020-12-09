@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Day8
-{
+{//2307, 2345, 2511 va för höga
     class Program
     {
         private static int myAcc = 0;
@@ -15,8 +15,8 @@ namespace Day8
             string puzzleSearchPath = (@"C:\Users\gusta\source\repos\AdventOfCode2020\Day8\puzzleInput.txt");
             string[] puzzleInput = System.IO.File.ReadAllLines(puzzleSearchPath);
             MakeBootCode(puzzleInput);
-            Console.WriteLine($"Part one, Acc Value: {PartOne()}");
-            //Console.WriteLine($"Part two: {PartTwo()}");
+            Console.WriteLine($"Part one, Acc value: {PartOne()}");
+            PartTwo();
         }
 
         private static void MakeBootCode(string[] puzzleInput)
@@ -37,22 +37,38 @@ namespace Day8
             MoveSteps(1);
             while(true)
             {
-                if (IsThisTheEnd())
+                if (IsEndPartOne() || IsEndPartTwo())
                     return myAcc;
+                else if (pos > myBootCode.Count-1)
+                    break;
                 usedComs.Add(pos);
                 DoAction();
             }
+            return myAcc;
         }
         
-        private static int PartTwo()
+        private static void PartTwo()
         {
-            MoveSteps(1);
-            while (true)
+            Changing("jmp", "nop");
+            Changing("nop", "jmp");
+            Console.WriteLine(myAcc);
+        }
+
+        private static void Changing(string change, string changeTo)
+        {
+            foreach (var com in myBootCode.ToArray())
             {
-                if (IsThisTheEnd())
-                    return myAcc;
-                usedComs.Add(pos);
-                DoAction();
+                int index = 0;
+                if (com.Item1 == change)
+                {
+                    Tuple<string, int> myBackupTuple = com;
+                    index = myBootCode.IndexOf(com);
+                    myBootCode.Insert(myBootCode.IndexOf(com), new Tuple<string, int>(changeTo, com.Item2));
+                    myBootCode.Remove(com);
+                    PartOne();
+                    myBootCode.RemoveAt(index);
+                    myBootCode.Insert(index, myBackupTuple);
+                }
             }
         }
 
@@ -63,6 +79,7 @@ namespace Day8
 
         private static void DoAction()
         {
+            
             if (myBootCode[pos].Item1 == "acc")
             {
                 ChangeAcc(myBootCode[pos].Item2);
@@ -78,18 +95,19 @@ namespace Day8
         {
             myAcc = myAcc + addValue;
         }
-        private static bool IsThisTheEnd()
+
+        private static bool IsEndPartOne()
         {
             bool returnValue = false;
-            if (IsUsed() || EndOfFile())
+            if (IsUsed())
                 returnValue = true;
             return returnValue;
         }
 
-        private static bool EndOfFile()
+        private static bool IsEndPartTwo()
         {
             bool returnValue = false;
-            if (pos > myBootCode.Count)
+            if (pos == myBootCode.Count-1)
                 returnValue = true;
             return returnValue;
         }
@@ -101,9 +119,5 @@ namespace Day8
                 returnValue = true;
             return returnValue;
         }
-
-
-
-
     }
 }
